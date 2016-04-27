@@ -1,8 +1,18 @@
-module.exports = function(el) {
+var tabbableSelector = 'input, select, a, textarea, button, [tabindex]';
+
+module.exports = function(el, selectorParam) {
   var basicTabbables = [];
   var orderedTabbables = [];
 
-  var candidateNodelist = el.querySelectorAll('input, select, a, textarea, button, [tabindex]');
+  if (!selectorParam) {
+    selectorParam = tabbableSelector;
+  }
+  var candidateNodelist;
+  if (typeof selectorParam == 'function') {
+    candidateNodelist = selectorParam(el)
+  } else {
+    candidateNodelist = el.querySelectorAll(selectorParam);
+  }
   var candidates = Array.prototype.slice.call(candidateNodelist);
 
   var candidate, candidateIndex;
@@ -42,6 +52,8 @@ module.exports = function(el) {
 
   return tabbableNodes;
 }
+
+module.exports.tabbableSelector = tabbableSelector;
 
 var nodeCache = {};
 var nodeCacheIndex = 1;
