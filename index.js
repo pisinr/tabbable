@@ -55,9 +55,10 @@ module.exports = function(el, selectorParam) {
 
 module.exports.DEFAULT_SELECTOR = tabbableSelector;
 
-module.exports.setDefaultSelector(selector) {
+function setDefaultSelector(selector) {
   tabbableSelector = selectorParam(selector);
 }
+module.exports.setDefaultSelector = setDefaultSelector;
 
 var nodeCache = {};
 var nodeCacheIndex = 1;
