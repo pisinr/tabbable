@@ -53,7 +53,11 @@ module.exports = function(el, selectorParam) {
   return tabbableNodes;
 }
 
-module.exports.tabbableSelector = tabbableSelector;
+module.exports.DEFAULT_SELECTOR = tabbableSelector;
+
+module.exports.setDefaultSelector(selector) {
+  tabbableSelector = selectorParam(selector);
+}
 
 var nodeCache = {};
 var nodeCacheIndex = 1;
